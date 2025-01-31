@@ -5,7 +5,7 @@ import { DollarSign, Calendar, Clock, TrendingUp, Home } from "lucide-react";
 
 export function Sidebar() {
   return (
-    <div className="bg-secondary/20 text-neutral-600 p-4 flex flex-col w-20 items-center space-y-4 py-6">
+    <div className="bg-secondary/20 text-neutral-600 p-2 pt-3 flex flex-col w-auto items-center space-y-2 ">
       <nav className="flex-1 w-full">
         <ul className="space-y-4 flex flex-col items-center">
           {menuItems.map(({ href, icon, text }) => (

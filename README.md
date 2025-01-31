@@ -1,11 +1,12 @@
+### Vistra (Gestor de Finanzas y Reservas)
 
-# Gestor de Finanzas y Reservas
+Una aplicación moderna para la gestión de finanzas personales y reservas,
+construida con Next.js, TypeScript, TailwindCSS y componentes Radix UI.
 
-Una aplicación moderna para la gestión de finanzas personales y reservas, construida con Next.js, TypeScript, TailwindCSS y componentes Radix UI.
-
-## Características
+### Características
 
 - **Gestión de Finanzas:**
+
   - Agregar, editar y eliminar transacciones.
   - Categorizar ingresos y gastos.
   - Visualización de estadísticas financieras con gráficos interactivos.
@@ -57,4 +58,3 @@ Una aplicación moderna para la gestión de finanzas personales y reservas, cons
 ### Estadísticas de Finanzas
 
 ![Estadísticas](/public/estadisticas-finanzas.png)
-
