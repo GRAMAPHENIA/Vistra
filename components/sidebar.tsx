@@ -1,47 +1,71 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, DollarSign, Calendar, Clock, TrendingUp, Home } from 'lucide-react'
+import Link from "next/link";
+import { DollarSign, Calendar, Clock, TrendingUp, Home } from "lucide-react";
 
 export function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false)
-
   return (
-    <div className={`bg-secondary/20 text-secondary-foreground p-4 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-20' : 'w-64'}`}>
-      <Button 
-        variant="ghost" 
-        size="icon"
-        className="mb-4 w-full flex justify-center"
-        onClick={() => setIsCollapsed(!isCollapsed)}
-      >
-        {isCollapsed ? <ChevronRight className="h-6 w-6" /> : <ChevronLeft className="h-6 w-6" />}
-      </Button>
-      <nav>
-        <ul className="space-y-2">
-          <SidebarItem href="/" icon={<Home />} text="Inicio" isCollapsed={isCollapsed} />
-          <SidebarItem href="/gastos-diarios" icon={<DollarSign />} text="Gastos Diarios" isCollapsed={isCollapsed} />
-          <SidebarItem href="/totales-mensuales" icon={<Calendar />} text="Totales Mensuales" isCollapsed={isCollapsed} />
-          <SidebarItem href="/reservas" icon={<Calendar />} text="Reservas" isCollapsed={isCollapsed} />
-          <SidebarItem href="/horas-freelancer" icon={<Clock />} text="Horas Freelancer" isCollapsed={isCollapsed} />
-          <SidebarItem href="/margen-inesperado" icon={<TrendingUp />} text="Margen Inesperado" isCollapsed={isCollapsed} />
+    <div className="bg-secondary/20 text-neutral-600 p-4 flex flex-col w-20 items-center space-y-4 py-6">
+      <nav className="flex-1 w-full">
+        <ul className="space-y-4 flex flex-col items-center">
+          {menuItems.map(({ href, icon, text }) => (
+            <SidebarItem key={href} href={href} icon={icon} text={text} />
+          ))}
         </ul>
       </nav>
     </div>
-  )
+  );
 }
 
-function SidebarItem({ href, icon, text, isCollapsed }: { href: string; icon: React.ReactNode; text: string; isCollapsed: boolean }) {
+const menuItems = [
+  { href: "/", icon: <Home className="h-6 w-6" />, text: "Inicio" },
+  {
+    href: "/gastos-diarios",
+    icon: <DollarSign className="h-6 w-6" />,
+    text: "Gastos Diarios",
+  },
+  {
+    href: "/totales-mensuales",
+    icon: <Calendar className="h-6 w-6" />,
+    text: "Totales Mensuales",
+  },
+  {
+    href: "/reservas",
+    icon: <Calendar className="h-6 w-6" />,
+    text: "Reservas",
+  },
+  {
+    href: "/horas-freelancer",
+    icon: <Clock className="h-6 w-6" />,
+    text: "Horas Freelancer",
+  },
+  {
+    href: "/margen-inesperado",
+    icon: <TrendingUp className="h-6 w-6" />,
+    text: "Margen Inesperado",
+  },
+];
+
+function SidebarItem({
+  href,
+  icon,
+  text,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  text: string;
+}) {
   return (
-    <li>
-      <Link href={href} className={`flex items-center p-2 rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors ${isCollapsed ? 'justify-center' : ''}`}>
+    <li className="relative group">
+      <Link
+        href={href}
+        className="flex items-center p-2 rounded-lg hover:bg-primary-foreground hover:text-primary h-9 w-9 justify-center"
+      >
         {icon}
-        <span className={`ml-2 transition-all duration-300 ease-in-out ${isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'}`}>
-          {text}
-        </span>
       </Link>
+      <span className="absolute top-1 left-full ml-2 px-2 py-1 bg-black text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-700 z-50">
+        {text}
+      </span> 
     </li>
-  )
+  );
 }
-
